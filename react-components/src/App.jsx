@@ -1,7 +1,6 @@
 import React ,{ createContext, useContext, useState } from 'react'
 import './App.css'
-import Popover from './Components/Popover/Popover'
-import { Toggle } from './Components/Toggle/Toggle'
+import Practice from './Practice';
 
 const ThemeContext = createContext();
 function App() {
@@ -17,14 +16,7 @@ function App() {
  
 
   return (
-    <ThemeContext.Provider value={{ theme }}>
-      {/* <Popover/> */}
-      {/* <Toggle>{({ on, toggle }) => <button onClick={toggle}>{on ? "ON" : "OFF"}</button>}</Toggle> */}
-      <button onClick={() => setTheme(prevTheme => prevTheme == "light" ? "dark" : "light")}>
-        Change theme......
-      </button>
-      <Layout />
-    </ThemeContext.Provider>
+    <Practice/>
   )
 }
 
