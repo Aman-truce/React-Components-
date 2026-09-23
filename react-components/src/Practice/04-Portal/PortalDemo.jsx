@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
 /*
   Exercise 4: createPortal
   --------------------------------
@@ -12,8 +12,30 @@ import React from 'react'
   React tree, not the DOM tree).
 */
 
+
+
 export default function PortalDemo() {
-  // TODO: parent div with overflow: hidden, height: 50px, onClick logging "parent clicked"
-  // TODO: child box (200px tall) rendered via ReactDOM.createPortal(..., document.body)
-  return null
+  const [showPortal, setPortal] = useState(false);
+  const portal = createPortal(
+    <div
+      onClick={() => console.log('box clicked')}
+      style={{ height: '200px', background: 'teal', width: '100%' }}
+    >
+      Portal box
+    </div>,
+    document.body
+  )
+  return (<>
+    <button onClick={() => setPortal(prevValue => !prevValue)}>
+      Open Portal
+    </button>
+    <div
+      onClick={() => console.log('parent clicked')}
+      style={{ overflow: 'hidden', background: 'gray', height: '50px', width: '100%' }}
+    >
+      {showPortal && portal
+      }
+    </div>
+  </>
+  )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 /*
   Exercise 2: useRef
@@ -12,14 +12,22 @@ import React from 'react'
 */
 
 export default function FocusCounter() {
-  const [value,setValue]=useState("");
+  const [value, setValue] = useState("");
+  const ref = useRef();
+  const renderCount = useRef(0);
+  renderCount.current++;
+  
   // TODO: inputRef with useRef, "Focus" button calling inputRef.current.focus()
 
+  const doFocus = () => {
+    ref.current?.focus();
+  }
 
+  console.log(renderCount.current,'here_001');
   // TODO: renderCountRef with useRef, incremented in the render body, logged to console
   return (<div>
 
-    <input id="input-focus" onClick={(e)=>setValue(e.target.value)} />
-
+    <input ref={ref} id="input-focus" value={value} onChange={(e) => setValue(e.target.value)} />
+    <button onClick={doFocus}>Focus Button</button>
   </div>)
 }

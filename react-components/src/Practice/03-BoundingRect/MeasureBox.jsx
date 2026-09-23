@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 
 /*
   Exercise 3: getBoundingClientRect
@@ -11,6 +11,30 @@ import React from 'react'
 
 export default function MeasureBox() {
   // TODO: boxRef with useRef
-  // TODO: onMeasure -> boxRef.current.getBoundingClientRect(), store in state, render it
-  return null
+  const boxRef = useRef();
+  const doMeasure = ()=> {
+    const poistion = boxRef.current.getBoundingClientRect();
+    console.log(poistion,'poistion-data_here_001');
+  }
+  
+  return (  
+    (<div style={{position:'relative'}}>
+      <button onClick={doMeasure} style={{position:'sticky', top:0}}>
+        Measure
+      </button>
+      <div style={{ height: '400px', width: "100%", padding: '30px', overflow: 'auto' }}>
+
+        <div style={{ height: '600px' }} />
+
+        <div ref={boxRef} style={{ height: "200px", width: "400PX", border: '1px solid #dedede', background:'blue' }}>
+          Box
+        </div>
+
+        <div style={{ height: '600px' }} />
+
+      </div>
+    </div>
+    )
+
+  )
 }
